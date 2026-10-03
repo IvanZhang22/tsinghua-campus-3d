@@ -1,0 +1,15 @@
+export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
+export type Era = 'garden' | 'university' | 'engineering' | 'today';
+export type ViewMode = 'isometric' | 'overhead' | 'ground' | 'cinematic';
+export type Quality = 'auto' | 'high' | 'low';
+export type Point = [number, number];
+export type Vec3 = [number, number, number];
+export type Landmark = { id: string; name: string; subtitle: string; category: 'heritage'|'modern'|'department'|'life'; position: Point; rotation?: number; size: [number,number,number]; model: string; built?: number; style: string; description: string; facts: string[]; sources: {title:string;url:string}[]; color?: string; };
+export type Building = { id:string; position:Point; size:[number,number,number]; rotation?:number; style:'brick'|'modern'|'residential'|'dorm'; footprint?:Point[]; };
+export type Road = { id:string; name?:string; points:Point[]; width:number; major?:boolean; };
+export type Landscape = { id:string; kind:'water'|'lawn'|'sports'|'garden'; points:Point[]; };
+export type District = { id:string; name:string; position:Point; points:Point[]; };
+export type TourRoute = { id:string; name:string; subtitle:string; color:string; stops:string[]; };
+export type SceneState = { version:1; season:Season; time:number; trees:number; lilac:number; cercis:number; activity:number; exposure:number; quality:Quality; seed:number; era:Era; labels:boolean; selected:string|null; view:ViewMode; camera?:{position:Vec3;target:Vec3}; };
+export type CameraCommand = { id:number; position:Vec3; target:Vec3; duration?:number; orbit?:boolean; };
+export type SceneApi = { getCamera:()=>{position:Vec3;target:Vec3}; capture:()=>string; getStats:()=>{fps:number;calls:number;triangles:number}; };

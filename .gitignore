@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.vercel/
+.env*
+artifacts/
+*.tsbuildinfo
+.npm-cache/
