@@ -12,4 +12,4 @@ export type District = { id:string; name:string; position:Point; points:Point[];
 export type TourRoute = { id:string; name:string; subtitle:string; color:string; stops:string[]; };
 export type SceneState = { version:1; season:Season; time:number; trees:number; lilac:number; cercis:number; activity:number; exposure:number; quality:Quality; seed:number; era:Era; labels:boolean; selected:string|null; view:ViewMode; camera?:{position:Vec3;target:Vec3}; };
 export type CameraCommand = { id:number; position:Vec3; target:Vec3; duration?:number; orbit?:boolean; };
-export type SceneApi = { getCamera:()=>{position:Vec3;target:Vec3}; capture:()=>string; getStats:()=>{fps:number;calls:number;triangles:number}; };
+export type SceneApi = { stopCamera:()=>void; getCamera:()=>{position:Vec3;target:Vec3}; capture:()=>string; getStats:()=>{fps:number;calls:number;triangles:number}; };
