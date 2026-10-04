@@ -14,7 +14,7 @@ export function Editor(p:Props){
  const mobile=()=>window.innerWidth<=760;
  useEffect(()=>{if(p.selected&&!p.tour){setLeftOpen(true);if(window.innerWidth<=760)setRightOpen(false);}},[p.selected?.id,p.tour?.routeId]);
  const openLeft=()=>{setLeftOpen(v=>!v);if(mobile())setRightOpen(false);},openRight=()=>{setRightOpen(v=>!v);if(mobile())setLeftOpen(false);};
- const items=p.landmarks.filter(l=>(category==='all'||l.focus?.includes(category))&&`${l.name}${l.subtitle}${l.description}${l.aliases?.join(' ')}`.includes(query));
+ const items=p.landmarks.filter(l=>(category==='all'||l.focus?.includes(category))&&`${l.name}${l.subtitle}${l.aliases?.join(' ')}`.includes(query.trim()));
  const currentEra=p.eras.find(e=>e.id===p.state.era)!;
  const currentRoute=p.tours.find(r=>r.id===p.tour?.routeId);
  const select=(id:string)=>{p.onSelect(id);setLeftOpen(true);if(mobile())setRightOpen(false);};

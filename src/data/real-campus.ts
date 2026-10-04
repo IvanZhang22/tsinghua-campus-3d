@@ -7,7 +7,7 @@ const map='https://www.tsinghua.edu.cn/zjqh/xyfg/xydt.htm';
 const scenic='https://www.tsinghua.edu.cn/zjqh/xyfg/xyjg.htm';
 const ring=(p:number[][])=>p as Point[];
 const outlines=geometry.outlines.map(o=>({...o,position:o.position as Point,footprint:ring(o.footprint)}));
-export const mapPoint=([x,y]:Point):Point=>[geometry.mapProjection.x[0]*x+geometry.mapProjection.x[1]*y+geometry.mapProjection.x[2],geometry.mapProjection.z[0]*x+geometry.mapProjection.z[1]*y+geometry.mapProjection.z[2]];
+export const mapPoint=([x,y]:Point):Point=>{const {x:cx,z:cz,southX:sx,southZ:sz}=geometry.mapProjection,t=Math.max(0,Math.min(1,(y-10095)/2475));return [(cx[0]*x+cx[1]*y+cx[2])*(1-t)+(sx[0]*x+sx[1]*y+sx[2])*t,(cz[0]*x+cz[1]*y+cz[2])*(1-t)+(sz[0]*x+sz[1]*y+sz[2])*t];};
 function bounds(rings:Point[][]){const p=rings.flat(),xs=p.map(p=>p[0]),zs=p.map(p=>p[1]);return {center:[(Math.min(...xs)+Math.max(...xs))/2,(Math.min(...zs)+Math.max(...zs))/2] as Point,w:Math.max(...xs)-Math.min(...xs),d:Math.max(...zs)-Math.min(...zs)};}
 function contains(p:Point,r:Point[]){let v=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const a=r[i],b=r[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])v=!v;}return v;}
 const matches:Record<string,string[]>={gate:['二校门'],dome:['大礼堂'],school:['清华学堂'],courtyard:['工字厅'],water:['水木清华'],science:['科学馆'],library:['图书馆老馆','图书馆新馆（逸夫馆）','图书馆北楼'],gym:['西区体育馆'],observatory:['气象台'],main:['西主楼','中央主楼','东主楼','东配楼','西配楼','主楼后厅 计算机开放实验室'],six:['第六教学楼A区','第六教学楼B区','第六教学楼C区'],humanities:['人文社科图书馆'],museum:['艺术博物馆'],theater:['新清华学堂'],mingli:['法学院明理楼'],mechanical:['机械工程馆'],art:['美术学院大楼'],guestJia:['甲所'],guestBing:['丙所'],guyu:['古月堂'],scienceFaculty:['物理系'],teach1:['第一教室楼'],teach2:['第二教室楼'],teach3:['第三教室楼一段、二段','第三教室楼三段'],teach4:['第四教室楼（真维斯楼）'],teach5:['第五教室楼（郑年锦楼）'],zijingDining:['紫荆园'],taoli:['桃李园'],zhilan:['芝兰园餐厅'],yushu:['玉树园餐厅'],qingfen:['南区学生食堂'],tingtao:['听涛园'],dingxiang:['丁香园'],guanchou:['观畴园 清青餐厅 学生会 研究生会'],wenxin:['闻馨园（清青快餐）'],heDining:['荷园餐厅 工会俱乐部'],xichun:['强斋 静斋 熙春园餐厅'],comprehensive:['综合体育馆'],swimming:['陈明游泳馆'],shooting:['射击馆'],airGym:['气膜体育馆'],eastGym:['东区体育馆'],westField:['西大操场'],eastField:['东大操场'],zijingField:['紫荆操场'],baseball:['棒垒场'],eastTennis:['东网球场'],westTennis:['西网球场'],redCourt:['红场（篮球场）'],sandVolley:['沙滩排球场'],skating:['轮滑场']};
@@ -34,7 +34,9 @@ export function calibrateCampus(base:Landmark[]){
   if(['technology','law','dorm','six','comprehensive'].includes(l.id))l.focus.push('scenic');
   if(l.id==='six')l.focus.push('teaching');
   if(l.id==='gym')l.focus.push('sports');
+  if(['guestJia','guestBing'].includes(l.id))l.focus.push('dining');
   l.aliases=[l.subtitle,...(matches[l.id]??[])];
+  if(['technology','mechanical'].includes(l.id))l.aliases.push('能动系','能源与动力工程系','热能系');
   if(l.id.startsWith('teach'))l.aliases.push(['一教','二教','三教','四教','五教'][Number(l.id.slice(-1))-1]);
   if(l.id==='six')l.aliases.push('六教');
   if(l.id==='law'){l.aliases.push('法图','法律图书馆','胡宝星法律图书馆','明法楼');l.sources.push({title:'法学院沿革与法律图书馆',url:'https://www.law.tsinghua.edu.cn/xygk/xyjj.htm'});}
@@ -58,7 +60,7 @@ export function calibrateCampus(base:Landmark[]){
  for(const l of list.filter(l=>!l.footprints&&!['marker','garden','pavilion','field','court'].includes(l.model))){
   const candidates=geometry.buildings.filter(b=>contains(l.position,ring(b.footprint))||Math.hypot(b.position[0]-l.position[0],b.position[1]-l.position[1])<30);
   const match=candidates.sort((a,b)=>Math.hypot(a.position[0]-l.position[0],a.position[1]-l.position[1])-Math.hypot(b.position[0]-l.position[0],b.position[1]-l.position[1]))[0];
-  if(match&&!mappedIds.has(match.id)){l.footprints=[ring(match.footprint)];const b=bounds(l.footprints);l.position=b.center;l.size=[b.w,l.size[1],b.d];l.geo!.coordinates=unproject(l.position);mappedIds.add(match.id);l.geo!.source='官方地图（2025）图形注册 · 轮廓待现场复核';if(!['law','technology','primary'].includes(l.id))l.model='footprint';}
+  if(match&&!mappedIds.has(match.id)){l.footprints=[ring(match.footprint)];const b=bounds(l.footprints);l.position=b.center;l.size=[b.w,l.size[1],b.d];l.geo!.coordinates=unproject(l.position);mappedIds.add(match.id);l.geo!.source='官方地图（2025）图形注册 · 轮廓待现场复核';if(!['law','technology'].includes(l.id))l.model='footprint';}
  }
  const context:Building[]=outlines.filter(o=>!sourceIds.has(o.id)&&!/(场|园|体育馆)/.test(o.name)).map(o=>{const b=bounds([o.footprint]);return {id:o.id,position:b.center,size:[b.w,/宿舍|紫荆/.test(o.name)?24:/家属|斋|院/.test(o.name)?9:18,b.d],footprint:o.footprint,style:/宿舍|紫荆/.test(o.name)?'dorm':/家属/.test(o.name)?'residential':'modern'};});
  const existing=[...context.map(b=>b.footprint!),...list.flatMap(l=>l.footprints??[])];
