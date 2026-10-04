@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 import type { OrbitControls as OrbitControlType } from 'three-stdlib';
 import type { CameraCommand, Landmark, SceneApi, SceneState, Season } from '../types';
-import { buildings, landmarks, landscapes, roads, districts, eras } from '../data/campus';
+import { buildings, landmarks, landscapes, roads, eras } from '../data/campus';
 import { LandmarkModel } from './LandmarkModels';
 import { buildingGeometry, createTrees, mergedBoxes, polygonGeometry, roadGeometry } from './geometry';
 import { seededRandom } from '../state';
@@ -23,15 +23,14 @@ function StaticCampus({state}:{state:SceneState}){
  const history=state.era!=='today';
  const grass=state.season==='winter'?'#cdd9ca':state.season==='autumn'?'#9d9e58':'#6e9b58';
  return <group>
-  <mesh receiveShadow position={[0,-8,0]}><boxGeometry args={[2320,15,2620]}/><meshStandardMaterial color="#dad9ca" roughness={.95}/></mesh>
-  <mesh receiveShadow position={[0,.01,0]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[2315,2615]}/><meshStandardMaterial color={grass} roughness={1}/></mesh>
+  <mesh receiveShadow position={[0,-8,0]}><boxGeometry args={[2400,15,3300]}/><meshStandardMaterial color="#dad9ca" roughness={.95}/></mesh>
+  <mesh receiveShadow position={[0,.01,0]} rotation={[-Math.PI/2,0,0]}><planeGeometry args={[2395,3295]}/><meshStandardMaterial color={grass} roughness={1}/></mesh>
   {shapes.map(s=><mesh key={s.id} geometry={s.geometry} position={[0,s.kind==='water'?.31:.15,0]} receiveShadow><meshStandardMaterial color={s.kind==='water'?(state.season==='winter'?'#94c8cd':'#578e9a'):s.kind==='sports'?'#659d8e':s.kind==='garden'?'#8fab73':(state.season==='winter'?'#d9dfcf':'#8bac75')} roughness={s.kind==='water'?.65:.95} metalness={0}/></mesh>)}
   <mesh geometry={curb} receiveShadow><meshStandardMaterial color="#e1ddd1" roughness={1}/></mesh>
   <mesh geometry={road} receiveShadow><meshStandardMaterial color="#b2b1a9" roughness={1}/></mesh>
   <mesh geometry={lines}><meshStandardMaterial color="#ede8db" roughness={1}/></mesh>
   {groups.map(g=><group key={g.style}><mesh geometry={g.body} castShadow={!history} receiveShadow><meshStandardMaterial color={history?'#c1c4b7':g.style==='brick'?'#b17762':g.style==='modern'?'#cbc8b8':g.style==='dorm'?'#eee8d6':'#c9bba4'} transparent={history} opacity={history?.26:1} roughness={.86}/></mesh><mesh geometry={g.roof} receiveShadow><meshStandardMaterial color={history?'#b9bdaf':g.style==='brick'?'#756a62':g.style==='dorm'?'#676c66':'#aaa596'} transparent={history} opacity={history?.22:1} roughness={.9}/></mesh></group>)}
-  {/* Sports field markings and the running track are shared simple geometries. */}
-  {landscapes.filter(l=>l.kind==='sports').map(l=>{const xs=l.points.map(p=>p[0]),zs=l.points.map(p=>p[1]);const x=(Math.min(...xs)+Math.max(...xs))/2,z=(Math.min(...zs)+Math.max(...zs))/2,w=Math.max(...xs)-Math.min(...xs),d=Math.max(...zs)-Math.min(...zs);return <group key={l.id} position={[x,.5,z]}><mesh rotation={[-Math.PI/2,0,0]}><planeGeometry args={[w*.82,d*.77]}/><meshStandardMaterial color="#7da36f"/></mesh><mesh rotation={[-Math.PI/2,0,0]}><ringGeometry args={[Math.min(w,d)*.17,Math.min(w,d)*.18,40]}/><meshBasicMaterial color="#e6e5cf"/></mesh><mesh><boxGeometry args={[w*.82,.1,.6]}/><meshBasicMaterial color="#e6e5cf"/></mesh></group>;})}
+
  </group>;
 }
 
@@ -66,7 +65,7 @@ function CampusActivity({activity}:{activity:number}){
 
 function NameTag({landmark,state,onSelect}:{landmark:Landmark;state:SceneState;onSelect:(id:string)=>void}){
  const [visible,setVisible]=useState(false);const last=useRef(false);const counter=useRef(0);
- useFrame(({camera})=>{if(++counter.current%12)return;const distance=camera.position.distanceTo(new THREE.Vector3(landmark.position[0],0,landmark.position[1]));const show=state.labels&&(state.selected===landmark.id||distance<850||(distance<4800&&typicalLabels.has(landmark.model)&&(window.innerWidth>760||!['gate','library'].includes(landmark.model))));if(last.current!==show){last.current=show;setVisible(show);}});
+ useFrame(({camera})=>{if(++counter.current%12)return;const distance=camera.position.distanceTo(new THREE.Vector3(landmark.position[0],0,landmark.position[1]));const show=state.labels&&(state.selected===landmark.id||distance<190||(distance<4800&&typicalLabels.has(landmark.id)&&(window.innerWidth>760||!['gate','library'].includes(landmark.id))));if(last.current!==show){last.current=show;setVisible(show);}});
  const eraYear=eras.find(e=>e.id===state.era)?.year??2025;
  const existed=state.era==='today'||(landmark.built!==undefined&&landmark.built<=eraYear);
  return <Html position={[0,landmark.size[1]+9,0]} center zIndexRange={[12,1]} style={{display:visible&&existed?'block':'none'}}><button className={`map-label ${state.selected===landmark.id?'selected':''}`} onClick={e=>{e.stopPropagation();onSelect(landmark.id);}}><span/>{landmark.name}</button></Html>;
@@ -96,7 +95,7 @@ function World(props:{state:SceneState;command:CameraCommand;onSelect:(id:string
  {props.state.selected===l.id&&<mesh rotation={[-Math.PI/2,0,0]} position={[0,.5,0]}><ringGeometry args={[Math.max(l.size[0],l.size[2])*.6,Math.max(l.size[0],l.size[2])*.6+1.5,64]}/><meshBasicMaterial color="#9c4baf" transparent opacity={.45} depthWrite={false}/></mesh>}
  <NameTag landmark={l} state={props.state} onSelect={props.onSelect}/>
  </group>;})}
- {props.state.labels&&districts.filter(d=>d.id.includes('resid')||d.id.includes('northwest')).map(d=><Html key={d.id} position={[d.position[0],20,d.position[1]]} center zIndexRange={[1,0]}><span className="district-label">{d.name} · 概化示意</span></Html>)}
+
  <CameraRig command={props.command} onManual={props.onManual} apiRef={props.apiRef} onReady={props.onReady}/></>;
 }
 

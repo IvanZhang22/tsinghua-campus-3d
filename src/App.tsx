@@ -1,12 +1,12 @@
 import { Component, useCallback, useEffect, useRef, useState } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
-import { landmarks, tours, eras } from './data/campus';
+import { landmarks, tours, eras, buildings, roads, landscapes } from './data/campus';
 import { CampusScene } from './scene/CampusScene';
 import { Editor } from './ui/Editor';
 import { decodeState, defaults, encodeState } from './state';
 import type { CameraCommand, Landmark, SceneApi, SceneState, ViewMode, Vec3 } from './types';
 
-const overview={position:[2100,2500,2300] as Vec3,target:[0,0,0] as Vec3};
+const overview={position:[2100,2500,2300] as Vec3,target:[0,0,100] as Vec3};
 function landmarkView(l:Landmark,view:ViewMode='isometric'):Omit<CameraCommand,'id'> {
  const [x,z]=l.position;const d=Math.max(85,Math.max(l.size[0],l.size[2])*1.7);
  if(view==='overhead')return {position:[x,d*2.4,z+1],target:[x,0,z]};
@@ -17,11 +17,11 @@ class SceneBoundary extends Component<{children:ReactNode;fallback:ReactNode;onE
  state={failed:false};static getDerivedStateFromError(){return {failed:true};}componentDidCatch(error:Error,info:ErrorInfo){console.error('三维场景初始化失败',error,info.componentStack);this.props.onError();}render(){return this.state.failed?this.props.fallback:this.props.children;}
 }
 function MapFallback({onSelect}:{onSelect:(id:string)=>void}){
- return <div className="fallback-map"><div className="fallback-explanation"><strong>二维校园概览</strong><p>当前设备未启用三维图形，可继续选择建筑阅读介绍。</p></div><svg viewBox="-1160 -1310 2320 2620" aria-label="清华校园二维示意图"><rect x="-1160" y="-1310" width="2320" height="2620" rx="70" fill="#d4dfc2"/>{landmarks.map(l=><g key={l.id} onClick={()=>onSelect(l.id)} role="button" tabIndex={0} aria-label={l.name} onKeyDown={e=>{if(e.key==='Enter')onSelect(l.id);}}><rect x={l.position[0]-l.size[0]/2} y={l.position[1]-l.size[2]/2} width={l.size[0]} height={l.size[2]} fill="#8d608f"/><text x={l.position[0]} y={l.position[1]+l.size[2]/2+15} textAnchor="middle" fontSize="24" fill="#433748">{l.name}</text></g>)}</svg></div>;
+ return <div className="fallback-map"><div className="fallback-explanation"><strong>二维校园概览</strong><p>可选择地点查看介绍、实拍与轮廓依据。</p></div><svg viewBox="-1200 -1500 2400 3300" aria-label="清华校园二维轮廓图"><rect x="-1200" y="-1500" width="2400" height="3300" fill="#d4dfc2"/>{landscapes.map(l=><polygon key={l.id} points={l.points.map(p=>p.join(',')).join(' ')} fill={l.kind==='water'?'#86afbd':'#759c77'}/>)}{roads.map(r=><polyline key={r.id} points={r.points.map(p=>p.join(',')).join(' ')} stroke="#f8f6eb" strokeWidth={r.width} fill="none"/>)}{buildings.map(b=><polygon key={b.id} points={b.footprint?.map(p=>p.join(',')).join(' ')} fill="#b7aa9c"/>)}{landmarks.map(l=><g key={l.id} onClick={()=>onSelect(l.id)} role="button" tabIndex={0} aria-label={l.name} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')onSelect(l.id);}}>{l.footprints?.map((r,i)=><polygon key={i} points={r.map(p=>p.join(',')).join(' ')} fill="#886489"/>)??<circle cx={l.position[0]} cy={l.position[1]} r="12" fill="#886489"/>}<circle cx={l.position[0]} cy={l.position[1]} r="18" fill="transparent"/><title>{l.name}</title></g>)}</svg></div>;
 }
 export default function App(){
  const [state,setState]=useState<SceneState>(()=>decodeState(new URLSearchParams(window.location.search).get('scene')));
- const [command,setCommand]=useState<CameraCommand>(()=>({id:0,...(state.camera??overview),duration:0}));
+ const [command,setCommand]=useState<CameraCommand>(()=>({id:0,...(state.camera??(landmarks.find(l=>l.id===state.selected)?landmarkView(landmarks.find(l=>l.id===state.selected)!):overview)),duration:0}));
  const [ready,setReady]=useState(false),[notice,setNotice]=useState(''),[stats,setStats]=useState<{fps:number;calls:number;triangles:number}|null>(null);
  const [tour,setTour]=useState<{routeId:string;index:number;playing:boolean}|null>(null);const apiRef=useRef<SceneApi|null>(null);
  const [shareLink,setShareLink]=useState('');const [postcard,setPostcard]=useState('');const [postcardDownload,setPostcardDownload]=useState('');
