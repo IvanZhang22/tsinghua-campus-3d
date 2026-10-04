@@ -1,0 +1,377 @@
+{
+  "gate": [
+    {
+      "src": "/photos/gate.jpg",
+      "title": "Thu gate.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Thu_gate.JPG",
+      "author": "User:Yaoleilei",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "date": "2003-10-25"
+    }
+  ],
+  "dome": [
+    {
+      "src": "/photos/dome-0.jpg",
+      "title": "Grand hall of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Grand_hall_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:03:28"
+    },
+    {
+      "src": "/photos/dome-1.jpg",
+      "title": "View of grand hall of Tsinghua University from library.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:View_of_grand_hall_of_Tsinghua_University_from_library.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:10:03"
+    }
+  ],
+  "school": [
+    {
+      "src": "/photos/school.jpg",
+      "title": "Former Building of Tsinghua Imperial College.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Former_Building_of_Tsinghua_Imperial_College.jpg",
+      "author": "HoweyYuan",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2024-07-07 11:27:51"
+    }
+  ],
+  "observatory": [
+    {
+      "src": "/photos/observatory.jpg",
+      "title": "Tsinghua University Observatory.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tsinghua_University_Observatory.jpg",
+      "author": "Lining Huo",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2023-04-29"
+    }
+  ],
+  "library": [
+    {
+      "src": "/photos/library-0.jpg",
+      "title": "清華大學圖書館一至四期建築.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E8%8F%AF%E5%A4%A7%E5%AD%B8%E5%9C%96%E6%9B%B8%E9%A4%A8%E4%B8%80%E8%87%B3%E5%9B%9B%E6%9C%9F%E5%BB%BA%E7%AF%89.jpg",
+      "author": "葉又嘉",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2021-05-06 18:26:43"
+    },
+    {
+      "src": "/photos/library-1.jpg",
+      "title": "Old library of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Old_library_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:10:58"
+    }
+  ],
+  "humanities": [
+    {
+      "src": "/photos/humanities.jpg",
+      "title": "Library for social science in Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Library_for_social_science_in_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:42:54"
+    }
+  ],
+  "museum": [
+    {
+      "src": "/photos/museum.jpg",
+      "title": "Tsinghua University Art Museum Huang Rulun Building (20240707145554).jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Tsinghua_University_Art_Museum_Huang_Rulun_Building_(20240707145554).jpg",
+      "author": "HoweyYuan",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2024-07-07 14:55:54"
+    }
+  ],
+  "technology": [
+    {
+      "src": "/photos/technology-0.jpg",
+      "title": "清華大學李兆基科技大樓.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E8%8F%AF%E5%A4%A7%E5%AD%B8%E6%9D%8E%E5%85%86%E5%9F%BA%E7%A7%91%E6%8A%80%E5%A4%A7%E6%A8%93.jpg",
+      "author": "Mitch Altman from San Francisco, USA",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "date": "2015-10-18 21:28"
+    },
+    {
+      "src": "/photos/technology-1.jpg",
+      "title": "清華大學李兆基科技大樓2.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E8%8F%AF%E5%A4%A7%E5%AD%B8%E6%9D%8E%E5%85%86%E5%9F%BA%E7%A7%91%E6%8A%80%E5%A4%A7%E6%A8%932.jpg",
+      "author": "葉又嘉",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2020-09-04 17:44:42"
+    }
+  ],
+  "mechanical": [
+    {
+      "src": "/photos/mechanical.jpg",
+      "title": "清華大學機械工程館冬景.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E8%8F%AF%E5%A4%A7%E5%AD%B8%E6%A9%9F%E6%A2%B0%E5%B7%A5%E7%A8%8B%E9%A4%A8%E5%86%AC%E6%99%AF.jpg",
+      "author": "清華匿名學生",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "date": "2021-11-07 09:16:04"
+    }
+  ],
+  "law": [
+    {
+      "src": "/photos/law.jpg",
+      "title": "清華大學法律圖書館.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E6%B8%85%E8%8F%AF%E5%A4%A7%E5%AD%B8%E6%B3%95%E5%BE%8B%E5%9C%96%E6%9B%B8%E9%A4%A8.jpg",
+      "author": "葉又嘉",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2020-10-25 16:08:01"
+    }
+  ],
+  "mingli": [
+    {
+      "src": "/photos/mingli.jpg",
+      "title": "School of Law of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:School_of_Law_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 14:11:44"
+    }
+  ],
+  "theater": [
+    {
+      "src": "/photos/theater.jpg",
+      "title": "New Tsinghua Auditorium.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:New_Tsinghua_Auditorium.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:51:35"
+    }
+  ],
+  "art": [
+    {
+      "src": "/photos/art.jpg",
+      "title": "Academy of Arts and Design.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Academy_of_Arts_and_Design.jpg",
+      "author": "高晶 at Chinese Wikipedia",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "date": "2011-10-29"
+    }
+  ],
+  "teach1": [
+    {
+      "src": "/photos/teach1.jpg",
+      "title": "No.1 Teaching Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.1_Teaching_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 11:58:37"
+    }
+  ],
+  "teach2": [
+    {
+      "src": "/photos/teach2.jpg",
+      "title": "No.2 Teaching Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.2_Teaching_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:00:30"
+    }
+  ],
+  "teach3": [
+    {
+      "src": "/photos/teach3.jpg",
+      "title": "No.3 Teaching Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.3_Teaching_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:48:36"
+    }
+  ],
+  "teach4": [
+    {
+      "src": "/photos/teach4.jpg",
+      "title": "No.4 Teaching Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.4_Teaching_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:49:47"
+    }
+  ],
+  "teach5": [
+    {
+      "src": "/photos/teach5.jpg",
+      "title": "第五教學樓.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:%E7%AC%AC%E4%BA%94%E6%95%99%E5%AD%B8%E6%A8%93.jpg",
+      "author": "葉又嘉",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2016-09-28 15:29:23"
+    }
+  ],
+  "six": [
+    {
+      "src": "/photos/six-0.jpg",
+      "title": "No.6 Teaching Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.6_Teaching_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:59:59"
+    },
+    {
+      "src": "/photos/six-1.jpg",
+      "title": "No.6 Teaching Building of Tsinghua University 2.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:No.6_Teaching_Building_of_Tsinghua_University_2.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:59:38"
+    }
+  ],
+  "dingxiang": [
+    {
+      "src": "/photos/dingxiang.jpg",
+      "title": "Dingxiangyuan Restaurant of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Dingxiangyuan_Restaurant_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:24:52"
+    }
+  ],
+  "zijingDining": [
+    {
+      "src": "/photos/zijingDining.jpg",
+      "title": "Panoramagram of Zijingyuan, Tsinghua University.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Panoramagram_of_Zijingyuan,_Tsinghua_University.jpg",
+      "author": "Myheimu",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "date": "2010-12-03"
+    }
+  ],
+  "comprehensive": [
+    {
+      "src": "/photos/comprehensive.jpg",
+      "title": "Gymnasium of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Gymnasium_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:33:39"
+    }
+  ],
+  "swimming": [
+    {
+      "src": "/photos/swimming.jpg",
+      "title": "Natatorium of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Natatorium_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:31:02"
+    }
+  ],
+  "highschool": [
+    {
+      "src": "/photos/highschool.jpg",
+      "title": "Gate of Tsinghua University High School at College Entrance Exam 2021 (20210608163306).jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:Gate_of_Tsinghua_University_High_School_at_College_Entrance_Exam_2021_(20210608163306).jpg",
+      "author": "N509FZ",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2021-06-08 16:33:06"
+    }
+  ],
+  "main": [
+    {
+      "src": "/photos/main-0.jpg",
+      "title": "Main building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Main_building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 14:06:53"
+    },
+    {
+      "src": "/photos/main-1.jpg",
+      "title": "West wing of main building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:West_wing_of_main_building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 14:06:19"
+    }
+  ],
+  "science": [
+    {
+      "src": "/photos/science-0.jpg",
+      "title": "Science Building of Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Science_Building_of_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 12:02:22"
+    }
+  ],
+  "water": [
+    {
+      "src": "/photos/water-0.jpg",
+      "title": "ShuiMu Tsinghua.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:ShuiMu_Tsinghua.jpg",
+      "author": "Myheimu",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "date": "2007-08-19"
+    }
+  ],
+  "garden": [
+    {
+      "src": "/photos/garden-0.jpg",
+      "title": "The lotus pond in Tsinghua University.jpg",
+      "source": "https://commons.wikimedia.org/wiki/File:The_lotus_pond_in_Tsinghua_University.jpg",
+      "author": "Dquai",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2006"
+    }
+  ],
+  "dorm": [
+    {
+      "src": "/photos/dorm-0.jpg",
+      "title": "Dormitory area of Tsinghua University 3.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Dormitory_area_of_Tsinghua_University_3.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:34:19"
+    }
+  ],
+  "campusRoad": [
+    {
+      "src": "/photos/campusRoad-0.jpg",
+      "title": "Main Street in Tsinghua University.JPG",
+      "source": "https://commons.wikimedia.org/wiki/File:Main_Street_in_Tsinghua_University.JPG",
+      "author": "そらみみ (Soramimi)",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "date": "2015-08-30 13:31:49"
+    }
+  ]
+}
