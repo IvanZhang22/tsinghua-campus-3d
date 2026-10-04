@@ -1,5 +1,7 @@
 # 清华园境 · 3D 校园漫游
 
+[在线漫游清华园](https://tsinghua-campus-3d.vercel.app) · [GitHub 仓库](https://github.com/IvanZhang22/tsinghua-campus-3d)
+
 以简体中文为主的清华大学海淀校区程序化三维沙盘，包含附中本部、附小清华园校区与校内家属区。浏览 24 处重点地点，实时调节季节、光照、花量、植被和校园活动，体验四条建筑导览与四个历史阶段。
 
 ## 本地运行
