@@ -48,3 +48,7 @@ Vite / React / TypeScript / Three.js / React Three Fiber / Drei。米制坐标 x
 - `src/ui/Editor.tsx`：中文编辑器与移动端抽屉。
 
 无需后端、访客登录或 API 密钥。Vercel 使用 Vite 框架预设，构建输出为 `dist`。GitHub Actions 运行类型检查、测试与生产构建。源代码采用 MIT 许可证；外链资料的权利归各来源所有。
+
+## 验收与版本
+
+请查看 [验收记录](docs/验收记录.md) 与 [版本记录](CHANGELOG.md)。包含完整截图、实测性能和已知简化。
