@@ -1,4 +1,5 @@
-import type { Landmark, Building, Road, Landscape, District, TourRoute, Era, Point } from '../types';
+import {calibrateCampus} from './real-campus.ts';
+import type { Landmark, District, TourRoute, Era, Point } from '../types.ts';
 const school='https://www.tsinghua.edu.cn';
 const source=(path:string,title='清华大学 · 建筑与校园')=>({title,url:school+path});
 type Entry=[string,string,string,Landmark['category'],number,number,number,number,number,string,number,string,string,string[],string];
@@ -28,20 +29,20 @@ const entries:Entry[]=[
  ['houses','照澜院与西南住宅区','校园里生活的历史','life',-760,675,170,8,125,'houses',1921,'早期教工住宅 · 中西融合','照澜院及周边早期教工住宅体现了校园作为生活场所的一面。较低的院落、树木和小路与教学楼区形成区别。照澜院建于 1921 年，1946 年改为现名。沙盘使用概化院落体块，只讲述公开建筑与社区历史。',['照澜院 1921 年建成','1946 年改为现名','住宅区仅作概化示意，不呈现住户信息'],'/info/1942/76123.htm'],
  ['neighborhood','校内西北家属区','校园生活的延伸','life',-945,-875,150,16,150,'neighborhood',0,'教工住宅 · 概化组团','校内西北家属区以住宅组团、绿地与支路表达，补全清华园中的生活空间。本项目将主要精力投入重点公共建筑，住宅区域采用概化示意。范围不延伸至荷清苑、蓝旗营或双清苑等外围住宅小区。',['仅覆盖校内家属区','住宅体量与布局为概化示意','不包含荷清苑、蓝旗营、双清苑'],'/info/1183/94818.htm']
 ];
-export const landmarks:Landmark[]=entries.map(([id,name,subtitle,category,x,z,w,h,d,model,built,style,description,facts,path])=>({id,name,subtitle,category,position:[x,z],size:[w,h,d],model,built:built||undefined,style,description,facts,sources:[source(path)]}));
+const baseLandmarks:Landmark[]=entries.map(([id,name,subtitle,category,x,z,w,h,d,model,built,style,description,facts,path])=>({id,name,subtitle,category,position:[x,z],size:[w,h,d],model,built:built||undefined,style,description,facts,sources:[source(path)]}));
 // The present-day school and dormitory footprints have no verified construction year.
 // School founding dates must not be used as the construction dates of current buildings.
-for(const id of ['primary','highschool','dorm'])landmarks.find(l=>l.id===id)!.built=undefined;
-landmarks.find(l=>l.id==='science')!.position=[-555,150];
-landmarks.find(l=>l.id==='science')!.size=[64,22,40];
-landmarks.find(l=>l.id==='museum')!.position=[860,150];
-landmarks.find(l=>l.id==='courtyard')!.sources.push(source('/info/1182/86305.htm','工字厅年代的新考证'));
-landmarks.find(l=>l.id==='technology')!.sources.push({title:'能源与动力工程系 · 当前联系地址',url:'https://www.te.tsinghua.edu.cn/lxwm/lxwm.htm'});
-landmarks.find(l=>l.id==='mechanical')!.sources.push({title:'机械学科简史',url:'https://www.sme.tsinghua.edu.cn/info/1005/1062.htm'});
-landmarks.find(l=>l.id==='mingli')!.sources.push({title:'法学院 · 明理楼历史资料',url:'https://www.law.tsinghua.edu.cn/info/1124/8843.htm'});
-landmarks.find(l=>l.id==='dome')!.sources=[{title:'艺术教育中心 · 大礼堂',url:'https://www.arts.tsinghua.edu.cn/cgzy/dlt.htm'}];
-landmarks.find(l=>l.id==='highschool')!.sources.push({title:'附中本部校园',url:'https://en.qhfz.edu.cn/About_Us/Our_Campus.htm'});
-landmarks.find(l=>l.id==='primary')!.sources.push({title:'附小学校简介',url:'https://www.qhfx.edu.cn/html/schooldesc'});
+for(const id of ['primary','highschool','dorm'])baseLandmarks.find(l=>l.id===id)!.built=undefined;
+baseLandmarks.find(l=>l.id==='science')!.position=[-555,150];
+baseLandmarks.find(l=>l.id==='science')!.size=[64,22,40];
+baseLandmarks.find(l=>l.id==='museum')!.position=[860,150];
+baseLandmarks.find(l=>l.id==='courtyard')!.sources.push(source('/info/1182/86305.htm','工字厅年代的新考证'));
+baseLandmarks.find(l=>l.id==='technology')!.sources.push({title:'能源与动力工程系 · 当前联系地址',url:'https://www.te.tsinghua.edu.cn/lxwm/lxwm.htm'});
+baseLandmarks.find(l=>l.id==='mechanical')!.sources.push({title:'机械学科简史',url:'https://www.sme.tsinghua.edu.cn/info/1005/1062.htm'});
+baseLandmarks.find(l=>l.id==='mingli')!.sources.push({title:'法学院 · 明理楼历史资料',url:'https://www.law.tsinghua.edu.cn/info/1124/8843.htm'});
+baseLandmarks.find(l=>l.id==='dome')!.sources=[{title:'艺术教育中心 · 大礼堂',url:'https://www.arts.tsinghua.edu.cn/cgzy/dlt.htm'}];
+baseLandmarks.find(l=>l.id==='highschool')!.sources.push({title:'附中本部校园',url:'https://en.qhfz.edu.cn/About_Us/Our_Campus.htm'});
+baseLandmarks.find(l=>l.id==='primary')!.sources.push({title:'附小学校简介',url:'https://www.qhfx.edu.cn/html/schooldesc'});
 export const eras:{id:Era;title:string;period:string;year:number;description:string}[]=[
  {id:'garden',title:'园林与学堂',period:'1909—1913',year:1913,description:'清代园林与早期学堂相遇。院落、池塘与红砖建筑呈现清华园的早期空间；未核实的普通楼淡化为当代参照。'},
  {id:'university',title:'大学成形',period:'1914—1937',year:1937,description:'四大建筑、图书馆扩建与机械工程馆勾勒大学校园。草坪、柱廊和红砖构成早期校园的建筑秩序。'},
@@ -54,37 +55,7 @@ export const tours:TourRoute[]=[
  {id:'legal',name:'法学与书香',subtitle:'明理楼 → 廖凯原楼',color:'#660874',stops:['mingli','law']},
  {id:'life',name:'在清华生活',subtitle:'公寓、附校与树影下的家',color:'#588574',stops:['gym','dorm','highschool','primary','houses','neighborhood']}
 ];
-export const roads:Road[]=[
- {id:'tsinghua',name:'清华路',major:true,width:18,points:[[-1120,450],[-760,450],[-530,450],[-100,450],[150,480],[1050,480]]},
- {id:'xuetang',name:'学堂路',major:true,width:17,points:[[85,-1150],[85,-580],[85,-300],[85,100],[85,480],[85,1080]]},
- {id:'xinmin',name:'新民路',major:true,width:13,points:[[-600,-1190],[-600,-550],[-600,-100],[-600,50],[-610,300],[-610,450],[-610,810]]},
- {id:'zijing',name:'紫荆路',major:true,width:16,points:[[-1080,-535],[-600,-535],[85,-535],[620,-535],[1100,-535]]},
- {id:'east',major:true,width:16,points:[[670,-1200],[670,-535],[670,40],[670,480],[670,900]]},
- {id:'north',width:12,points:[[-1020,-1020],[-600,-1020],[85,-1020],[1050,-1020]]},
- {id:'librarypath',width:10,points:[[-1040,-185],[-600,-185],[-370,-185],[85,-185],[85,-300],[620,-300]]},
- {id:'hallpath',width:8,points:[[-680,310],[-500,310],[-270,310],[-135,200],[85,200]]},
- {id:'eastwest',major:true,width:14,points:[[85,100],[340,100],[670,100],[1090,100]]},
- {id:'eastnorth',width:12,points:[[85,-650],[670,-650],[1050,-650]]},
- {id:'academic',width:12,points:[[340,-535],[340,-320],[340,100],[340,220]]},
- {id:'south',width:13,points:[[-1000,830],[-610,830],[85,830],[670,890],[1100,890]]},
- {id:'primarypath',width:9,points:[[-1090,-1080],[-1090,-535],[-1090,450]]},
- {id:'museum',width:10,points:[[780,-480],[780,100],[780,520],[780,890]]},
- {id:'northsouth',width:10,points:[[1090,-1140],[1090,-535],[1090,100],[1090,890]]},
- {id:'residential',width:8,points:[[-1020,550],[-1020,830],[-610,830]]}
-];
 const rectangle=(x:number,z:number,w:number,d:number):Point[]=>[[x-w/2,z-d/2],[x+w/2,z-d/2],[x+w/2,z+d/2],[x-w/2,z+d/2]];
-export const landscapes:Landscape[]=[
- {id:'lotus',kind:'water',points:[[-930,-130],[-865,-200],[-750,-172],[-686,-85],[-737,12],[-860,0],[-944,-48]]},
- {id:'shuimu-pond',kind:'water',points:rectangle(-685,125,105,49)},
- {id:'hall-lawn',kind:'lawn',points:rectangle(-480,220,110,118)},
- {id:'main-lawn',kind:'lawn',points:rectangle(435,550,260,120)},
- {id:'west-sports',kind:'sports',points:rectangle(-875,270,140,180)},
- {id:'north-sports',kind:'sports',points:rectangle(-775,-935,155,125)},
- {id:'east-sports',kind:'sports',points:rectangle(470,-450,170,130)},
- {id:'zijing-garden',kind:'garden',points:rectangle(410,-740,350,75)},
- {id:'heritage-garden',kind:'garden',points:rectangle(-745,-380,250,185)},
- {id:'east-garden',kind:'lawn',points:rectangle(990,670,100,170)}
-];
 export const districts:District[]=[
  {id:'heritage',name:'历史校园',position:[-600,90],points:rectangle(-620,20,750,920)},
  {id:'academic',name:'教学与科研',position:[450,180],points:rectangle(480,160,1000,1080)},
@@ -92,14 +63,6 @@ export const districts:District[]=[
  {id:'residential-southwest',name:'西南家属区',position:[-800,760],points:rectangle(-840,680,490,340)},
  {id:'residential-northwest',name:'西北家属区',position:[-965,-785],points:rectangle(-970,-840,320,500)}
 ];
-const body:Building[]=[];let next=0;let randomSeed=2026;const rng=()=>{randomSeed=(Math.imul(randomSeed,1664525)+1013904223)>>>0;return randomSeed/4294967296;};
-const blocks=[{x0:-1000,x1:-160,z0:-470,z1:800,style:'brick' as const},{x0:150,x1:1040,z0:-470,z1:880,style:'modern' as const},{x0:160,x1:1040,z0:-1160,z1:-660,style:'dorm' as const},{x0:-1060,x1:-860,z0:-1020,z1:-700,style:'residential' as const}];
-function segmentDistance(p:Point,a:Point,b:Point){const dx=b[0]-a[0],dz=b[1]-a[1],q=dx*dx+dz*dz,t=q?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/q)):0;return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dz);}
-for(const block of blocks)for(let x=block.x0;x<block.x1;x+=90)for(let z=block.z0;z<block.z1;z+=88){const w=28+rng()*25,d=20+rng()*20,h=block.style==='dorm'?24:12+rng()*19;const px=x+(rng()-.5)*13,pz=z+(rng()-.5)*13;
- if(landmarks.some(l=>Math.abs(px-l.position[0])<l.size[0]/2+w/2+22&&Math.abs(pz-l.position[1])<l.size[2]/2+d/2+22))continue;
- if(roads.some(r=>r.points.slice(1).some((b,i)=>segmentDistance([px,pz],r.points[i],b)<Math.max(w,d)/2+r.width/2+8)))continue;
- if(landscapes.some(l=>{const xs=l.points.map(p=>p[0]),zs=l.points.map(p=>p[1]);return px>Math.min(...xs)-w/2&&px<Math.max(...xs)+w/2&&pz>Math.min(...zs)-d/2&&pz<Math.max(...zs)+d/2;}))continue;
- body.push({id:`context-${next++}`,position:[px,pz],size:[w,h,d],style:block.style});
-}
-export const buildings=body;
-export const mapMeta={source:'https://www.tsinghua.edu.cn/zjqh/xyfg/xydt.htm',updated:'2025 年 12 月',precision:'校园示意沙盘 · 重点地标按公开资料组织，普通楼与住宅概化；空间坐标为近似校准，非测绘数据。'};
+const calibrated=calibrateCampus(baseLandmarks);
+export const {landmarks,buildings,roads,landscapes}=calibrated;
+export const mapMeta={source:'https://www.tsinghua.edu.cn/zjqh/xyfg/xydt.htm',updated:'2025 年 12 月',precision:'官方地图用于图形注册，结合 212 处公开轮廓（2014）交叉对照。原始地图为示意图，不能据此宣称测绘精度。建筑高度与地面高程仍待核实；详情页列出每个地点的资料依据。'};

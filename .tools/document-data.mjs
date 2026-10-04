@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {landmarks,buildings} from '../src/data/campus.ts';
+const lines=['# v1.1 地点与资料清单','','资料核对：2026-10-04。以下状态是资料对照结果，不是实地测绘认证。','','| 地点 | 分类 | 轮廓楼体 | 授权照片 | 依据与缺口 |','|---|---|---:|---:|---|'];
+for(const l of landmarks)lines.push(`| ${l.name} | ${l.focus?.join('、')} | ${l.footprints?.length??0} | ${l.photos?.length??0} | ${l.geo?.source}；${l.geo?.status}；${l.geo?.elevation} |`);
+lines.push('',`共 ${landmarks.length} 处可浏览地点，${buildings.length} 处背景轮廓。`,``, '官方校园景观的 25 个条目全部登记；甲所、丙所拆为两处。食堂在同一楼体内的服务合并登记。建筑高度、地形、部分当前用途及 2014 年后新增、改建轮廓仍待复核。');
+await fs.writeFile('docs/v1.1-资料清单.md',lines.join('\n'));
+const photos=['# 实拍照片授权与署名','','照片来自 Wikimedia Commons，按各文件页许可复用；未找到明确许可的官方照片只提供阅读链接，不复制到网站。图片为 Commons 提供的预览尺寸，未进行内容修改。摄影者、许可与原图链接也显示在页面内。',''];
+for(const l of landmarks)for(const p of l.photos??[])photos.push(`## ${l.name}`,``, `- 文件：${p.src}`,`- 原图：[${p.title}](${p.source})`,`- 作者：${p.author}`,`- 授权：[${p.license}](${p.licenseUrl})`,`- 日期：${p.date||'见原图说明'}`,'');
+await fs.writeFile('docs/照片授权.md',photos.join('\n'));
+console.log(landmarks.length,'registered places;',landmarks.filter(l=>l.photos?.length).length,'places with licensed photographs');
